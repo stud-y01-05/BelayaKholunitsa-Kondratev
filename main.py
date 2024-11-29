@@ -1,16 +1,15 @@
 import sys
 from random import randint
 
-from PyQt6 import uic
 from PyQt6.QtCore import QPoint
 from PyQt6.QtGui import QColor, QPainter
 from PyQt6.QtWidgets import QWidget, QApplication, QMainWindow
 
 
-class Circles(QMainWindow):
+class Ui_MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.point = QPoint()
         self.radius = 0
         self.flag = False
@@ -20,6 +19,7 @@ class Circles(QMainWindow):
     def click(self):
         self.point = QPoint(randint(0, self.width()), randint(0, self.height()))
         self.radius = randint(1, self.width() // 2)
+        self.color = QColor(randint(0, 255), randint(0, 255), randint(0, 255))
         self.flag = True
         self.update()
 
@@ -37,6 +37,6 @@ class Circles(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication([])
-    win = Circles()
+    win = Ui_MainWindow()
     win.show()
     sys.exit(app.exec())
